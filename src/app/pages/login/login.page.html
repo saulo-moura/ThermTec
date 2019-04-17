@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class='loginPage'>
+  <ion-grid>
+    <ion-row>
+      <ion-grid>
+        <form #loginForm='ngForm' (ngSubmit)='login()' autocomplete='off'>
+          <ion-row>
+            <img src='assets/background/bg-login.jpg' width='200px' height='200px'>
+          </ion-row>
+          <ion-row>
+            <ion-list inset>
+              <ion-item>
+                <ion-input placeholder='Usuário' name='username' id='loginField' type='text' required
+                  [(ngModel)]='username'>
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input placeholder='Senha' name='password' id='passwordField' type='password' required
+                  [(ngModel)]='password'>
+                </ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-row>
+          <ion-row>
+            <div *ngIf='error' class='alert alert-danger'>{{error}}</div>
+            <button ion-button class='submit-btn' fulltype='submit' [disabled]='loginForm.form.valid'>
+              ENTRAR</button>
+          </ion-row>
+        </form>
+      </ion-grid>
+    </ion-row>
+  </ion-grid>
+</ion-content>

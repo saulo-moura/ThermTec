@@ -1,21 +1,47 @@
 
-    .loginPage{
-        background-image: url('../../../assets/background/bg-login.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    .login-container {
-        border-radius: 10px;
-        opacity: 0.8;
-        width: 80%;
-        text-align: center;
-        background-color: white;
-     }
-     .login-logo{
-         vertical-align: center;
-         text-align: center;
-     }
-     .login-form{
-         opacity: none !important;
-     }
+.logo-row {
+    padding-top: 50px;
+}
+
+.logo-row img {
+    border-radius: 5%
+}
+
+.login-box {
+    padding: 0;
+    margin-top: 10px;
+    border-radius: 10%
+}
+.login-content {
+    --background: none;
+    background-color: #fff;
+    background-image: url('../../../assets/background/bg-login.jpg');
+    background-repeat: no-repeat; 
+    background-position: center center;
+    background-size: cover;
+}
+
+ion-row {
+    align-items: center;
+    text-align: center;
+}
+
+ion-item {
+    border-radius: 30px !important;
+    padding-left: 30px !important;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    border: 1px solid #ffffff;
+    border-bottom: 0px !important;
+    box-shadow: none !important;
+}
+
+.signup-col {
+    margin: 0px 16px 0px 16px;
+    padding-bottom: 20px;
+}
+
+.item-inner {
+    border-bottom-color: #ffffff !important;
+    box-shadow: none !important;
+}

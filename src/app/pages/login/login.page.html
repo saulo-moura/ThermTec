@@ -1,18 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title text-center>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content padding class='loginPage'>
-  <ion-grid>
-    <ion-row>
-      <ion-grid>
-        <form #loginForm='ngForm' (ngSubmit)='login()' autocomplete='off'>
-          <ion-row>
-            <img src='assets/background/bg-login.jpg' width='200px' height='200px'>
-          </ion-row>
-          <ion-row>
-            <ion-list inset>
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col>
+        <img src='assets/logo/thermtec-logo.jpeg' width="150">
+    </ion-col>
+  </ion-row>
+  <div class="login-box">
+    <ion-list inset>
+      <form #loginForm='ngForm' (ngSubmit)='login()' autocomplete='off'>
+        <ion-row>
+          <ion-col>
               <ion-item>
                 <ion-input placeholder='Usuário' name='username' id='loginField' type='text' required
                   [(ngModel)]='username'>
@@ -23,15 +19,15 @@
                   [(ngModel)]='password'>
                 </ion-input>
               </ion-item>
-            </ion-list>
-          </ion-row>
-          <ion-row>
-            <div *ngIf='error' class='alert alert-danger'>{{error}}</div>
-            <button ion-button class='submit-btn' fulltype='submit' [disabled]='loginForm.form.valid'>
-              ENTRAR</button>
-          </ion-row>
-        </form>
-      </ion-grid>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-list>
+    <ion-row>
+      <ion-col class="signup-col">
+        <ion-button class="submit-btn" color='primary' expand='block' fulltype='submit' [disabled]='loginForm.form.valid'>ENTRAR</ion-button>
+        <ion-button class="register-btn" color='primary' expand='block' clear (click)="createAccount()">CADASTRE-SE</ion-button>
+      </ion-col>
     </ion-row>
-  </ion-grid>
+  </div>
 </ion-content>

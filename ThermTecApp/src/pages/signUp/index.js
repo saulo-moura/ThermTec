@@ -89,7 +89,7 @@ export default class SignUp extends Component {
         return (
             <Container>
                 <StatusBar hidden />
-                <Logo source={require('../../images/thermtec-blue.jpeg')} resizeMode="contain" />
+                <Logo source={require('../../images/thermtec-blue-transparent.png')} resizeMode="contain" />
                 {this.state.success.length !== 0 && <SuccessMessage>{this.state.success}</SuccessMessage>}
                 <Input
                     placeholder="Nome de usuário"

@@ -12,11 +12,9 @@ import {
     Input,
     ErrorMessage,
     Button,
-    ButtonText,
-    SignUpLink,
-    SignUpLinkText,
+    ButtonText
 } from './styles';
-
+ 
 export default class SignIn extends Component {
     static navigationOptions = {
         header: null,
@@ -43,9 +41,11 @@ export default class SignIn extends Component {
         this.setState({ password });
     };
 
+    /*}
     handleCreateAccountPress = () => {
         this.props.navigation.navigate('SignUp');
     };
+    */
 
     handleSignInPress = async () => {
         if (this.state.email.length === 0 || this.state.password.length === 0) {
@@ -60,7 +60,7 @@ export default class SignIn extends Component {
                 const resetAction = StackActions.reset({
                     index: 0,
                     actions: [
-                        NavigationActions.navigate({ routeName: 'Main', params: { token: response.data.token } }),
+                        NavigationActions.navigate({ routeName: 'Home', params: { token: response.data.token } }),
                     ],
                 });
                 this.props.navigation.dispatch(resetAction);
@@ -74,7 +74,7 @@ export default class SignIn extends Component {
         return (
             <Container>
                 <StatusBar hidden />
-                <Logo source={require('../../images/thermtec-blue.jpeg')} resizeMode="contain" />
+                <Logo source={require('../../images/thermtec-blue-transparent.png')} resizeMode="contain" />
                 <Input
                     placeholder="Endereço de e-mail"
                     value={this.state.email}
@@ -94,9 +94,11 @@ export default class SignIn extends Component {
                 <Button onPress={this.handleSignInPress}>
                     <ButtonText>Entrar</ButtonText>
                 </Button>
+                {/*
                 <SignUpLink onPress={this.handleCreateAccountPress}>
                     <SignUpLinkText>Criar conta grátis</SignUpLinkText>
                 </SignUpLink>
+                */}
             </Container>
         );
     }

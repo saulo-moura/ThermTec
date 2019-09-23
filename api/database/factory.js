@@ -23,8 +23,8 @@ Factory.blueprint('App/Models/UserType', (fake, index, data) => {
 
 Factory.blueprint('App/Models/User', () => {
     return {
-        username: 'admin_thermtec',
-        email: 'contato@thermtec.com.br',
+        name: 'Administrador',
+        email: 'admin@thermtec.com.br',
         password: 'admin@thermtec',
         user_type_id: 1
     }

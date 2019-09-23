@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { StatusBar } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import api from '../../services/api';
 
@@ -28,8 +29,8 @@ export default class SignIn extends Component {
     };
 
     state = {
-        email: '',
-        password: '',
+        email: 'admin@thermtec.com.br',
+        password: 'admin@thermtec',
         error: '',
     };
 
@@ -57,10 +58,12 @@ export default class SignIn extends Component {
                     password: this.state.password,
                 });
 
+                await AsyncStorage.setItem('@ThermTecApp:token', response.data.token);
+
                 const resetAction = StackActions.reset({
                     index: 0,
                     actions: [
-                        NavigationActions.navigate({ routeName: 'Home', params: { token: response.data.token } }),
+                        NavigationActions.navigate({ routeName: 'Customers' }),
                     ],
                 });
                 this.props.navigation.dispatch(resetAction);

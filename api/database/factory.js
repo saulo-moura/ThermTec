@@ -29,3 +29,11 @@ Factory.blueprint('App/Models/User', () => {
         user_type_id: 1
     }
 })
+
+Factory.blueprint('App/Models/Customer', (faker) => {
+    return {
+        name: faker.name(),
+        address: faker.address(),
+        user_id: 1
+    }
+})

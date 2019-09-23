@@ -23,7 +23,7 @@ Route.get('/', () => {
 /**
  * Rotas de criação e autenticação de usuários
  */
-Route.post('/users', 'UserController.create')
+Route.resource('/users', 'UserController')
 Route.post('/auth', 'AuthController.create')
 
 /**

@@ -15,18 +15,11 @@
 const Factory = use('Factory')
 const Hash = use('Hash')
 
-Factory.blueprint('App/Models/UserType', (fake, index, data) => {
-    return {
-        description: data[index]
-    }
-})
-
 Factory.blueprint('App/Models/User', () => {
     return {
         name: 'Administrador',
         email: 'admin@thermtec.com.br',
-        password: 'admin@thermtec',
-        user_type_id: 1
+        password: 'admin@thermtec'
     }
 })
 
@@ -35,5 +28,27 @@ Factory.blueprint('App/Models/Customer', (faker) => {
         name: faker.name(),
         address: faker.address(),
         user_id: 1
+    }
+})
+
+Factory.blueprint('App/Models/ServiceType', (faker, index, data) => {
+    return {
+        description: data[index]
+    }
+})
+
+Factory.blueprint('App/Models/Service', (faker) => {
+    return {
+        code: faker.word({ length: 5 }),
+        customer_id: 1,
+        description: faker.sentence(),
+        cost: faker.floating({ min: 0, max: 1000 })
+    }
+})
+
+Factory.blueprint('App/Models/ServiceTypeService', (faker) => {
+    return {
+        service_id: faker.integer({ min: 1, max: 15 }),
+        service_type_id: faker.integer({ min: 1, max: 5 })
     }
 })

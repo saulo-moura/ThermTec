@@ -16,10 +16,6 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
-
 /**
  * Rotas de criação e autenticação de usuários
  */
@@ -32,3 +28,11 @@ Route.post('/auth', 'AuthController.create')
 Route.resource('customers', 'CustomerController')
   .apiOnly()
   .middleware('auth')
+
+  /**
+   * Rotas referentes aos serviços realizados
+   */
+  Route.resource('services', 'ServiceController')
+  .apiOnly()
+  .middleware('auth')
+  Route.get('services/customer/:customerId', 'ServiceController.getByCustomer')

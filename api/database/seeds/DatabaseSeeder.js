@@ -15,12 +15,6 @@ const Factory = use('Factory')
 
 class DatabaseSeeder {
   async run() {
-    const userType = await Factory
-      .model('App/Models/UserType')
-      .createMany(2, [
-        'Empresa',
-        'Cliente'
-      ])
 
     const user = await Factory
       .model('App/Models/User')
@@ -29,6 +23,24 @@ class DatabaseSeeder {
     const customer = await Factory
       .model('App/Models/Customer')
       .createMany(4)
+
+    const serviceType = await Factory
+      .model('App/Models/ServiceType')
+      .createMany(5, [
+        'Manutenção Preventiva',
+        'Manutenção Corretiva',
+        'Instalação',
+        'Carga de Gás',
+        'Outros'
+      ])
+
+    const service = await Factory
+      .model('App/Models/Service')
+      .createMany(15)
+
+    const serviceTypeService = await Factory
+      .model('App/Models/ServiceTypeService')
+      .createMany(10)
   }
 }
 

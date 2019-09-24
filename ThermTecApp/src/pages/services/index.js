@@ -6,46 +6,37 @@ import FooterMenu from '../footerMenu/FooterMenu'
 
 import api from '../../services/api';
 
-export default class Customers extends Component {
+export default class Services extends Component {
     static navigationOptions = {
         header: null,
     };
 
     state = {
-        user: {
-            id: '',
-            username: '',
-            email: '',
-            user_type_id: '',
-            customers: []
-        }
+        services: []
     }
 
     async componentDidMount() {
+        const { navigation } = this.props;
+        const customerId = navigation.getParam('customerId', 'NO-ID');
         try {
-            const response = await api.get('/users')
-            this.setState({ user: response.data })
+            const response = await api.get('/services/customer/' + customerId  )
+            this.setState({ services: response.data })
         } catch (err) {
             console.tron.log(err)
         }
     }
 
-
-    _onPressButton(id, name) {
-        this.props.navigation.navigate('Services', { customerId: id, customerName: name, userName: this.state.user.name })
-    }
-
-    _onLongPressButton() {
-        alert('You long-pressed the button!')
-    }
-
     render() {
-        const renderedCustomers = []
-        for (let i = 0; i < this.state.user.customers.length; i++) {
-            renderedCustomers.push(
-                <TouchableHighlight key={this.state.user.customers[i].id} underlayColor="white">
-                    <Button full iconRight rounded style={styles.button} onPress={() => this._onPressButton(this.state.user.customers[i].id, this.state.user.customers[i].name)} /*onLongPress={this._onLongPressButton}*/ >
-                        <Text style={styles.buttonText}>{this.state.user.customers[i].name}</Text>
+        const { navigation } = this.props;
+        const customerName = navigation.getParam('customerName', 'NO-NAME');
+        const userName = navigation.getParam('userName', 'NO-USERNAME');
+        const renderedServices = []
+        
+        for (let i = 0; i < this.state.services.length; i++) {
+            renderedServices.push(
+                <TouchableHighlight key={this.state.services[i].id} underlayColor="white">
+                    <Button full iconRight rounded style={styles.button} onPress={() => this._onPressButton(this.state.services[i].id)} /*onLongPress={this._onLongPressButton}*/ >
+                        <Text style={styles.buttonText}>{this.state.services[i].code}</Text>
                         <Icon style={styles.icon} name="arrow-forward" />
                     </Button>
                 </TouchableHighlight>
@@ -62,14 +53,14 @@ export default class Customers extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Olá {this.state.user.name}!</Title>
-                        <Subtitle>Meus Clientes</Subtitle>
+                        <Title>Olá {userName}!</Title>
+                        <Subtitle>Serviços do cliente {customerName}</Subtitle>
                     </Body>
                 </Header>
                 <Content>
-                    {renderedCustomers}
+                    {renderedServices}
                 </Content>
-                <FooterMenu page="customers" />
+                <FooterMenu page="services" />
             </Container>
         );
     }

@@ -39,10 +39,6 @@ class User extends Model {
     return this.hasMany('App/Models/Token')
   }
 
-  type () {
-    return this.hasOne('App/Models/UserType')
-  }
-
   customers () {
     return this.hasMany('App/Models/Customer')
   }

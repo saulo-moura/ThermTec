@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
-import { Container, Header, Content, Subtitle, Text, Left, Body, Button, Icon, Title } from 'native-base';
-import { TouchableHighlight, StyleSheet, Image } from 'react-native';
-import FooterMenu from '../footerMenu/FooterMenu'
+import { Container, Content, Text, Button, Icon, List, ListItem, Right, Left } from 'native-base';
+import { TouchableHighlight, StyleSheet, ActivityIndicator } from 'react-native';
+import FixedHeader from '../../fixed-components/header/FixedHeader'
+import FixedFooter from '../../fixed-components/footer/FixedFooter'
+import AsyncStorage from '@react-native-community/async-storage';
 
 import api from '../../services/api';
 
@@ -14,9 +16,8 @@ export default class Customers extends Component {
     state = {
         user: {
             id: '',
-            username: '',
+            name: '',
             email: '',
-            user_type_id: '',
             customers: []
         }
     }
@@ -25,73 +26,40 @@ export default class Customers extends Component {
         try {
             const response = await api.get('/users')
             this.setState({ user: response.data })
+            await AsyncStorage.setItem('@ThermTecApp:username', this.state.user.name);
         } catch (err) {
             console.tron.log(err)
         }
     }
 
-
     _onPressButton(id, name) {
-        this.props.navigation.navigate('Services', { customerId: id, customerName: name, userName: this.state.user.name })
-    }
-
-    _onLongPressButton() {
-        alert('You long-pressed the button!')
+        this.props.navigation.navigate('Services', { customerId: id, customerName: name })
     }
 
     render() {
-        const renderedCustomers = []
-        for (let i = 0; i < this.state.user.customers.length; i++) {
-            renderedCustomers.push(
-                <TouchableHighlight key={this.state.user.customers[i].id} underlayColor="white">
-                    <Button full iconRight rounded style={styles.button} onPress={() => this._onPressButton(this.state.user.customers[i].id, this.state.user.customers[i].name)} /*onLongPress={this._onLongPressButton}*/ >
-                        <Text style={styles.buttonText}>{this.state.user.customers[i].name}</Text>
-                        <Icon style={styles.icon} name="arrow-forward" />
-                    </Button>
-                </TouchableHighlight>
-            )
-        }
-
         return (
             <Container>
                 <StatusBar hidden />
-                <Header>
-                    <Left>
-                        <Button transparent>
-                            <Image style={styles.logo} source={require('../../images/thermtec-blue-transparent.png')} />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Olá {this.state.user.name}!</Title>
-                        <Subtitle>Meus Clientes</Subtitle>
-                    </Body>
-                </Header>
+                <FixedHeader subtitle="Meus Clientes" />
                 <Content>
-                    {renderedCustomers}
+                    <List>
+                        {
+                            this.state.user.customers.map((customer) => (
+                                <ListItem onPress={() => this._onPressButton(customer.id, customer.name)} key={customer.id}>
+                                    <Left>
+                                        <Text>{customer.name}</Text>
+                                    </Left>
+                                    <Right>
+                                        <Icon name="arrow-forward" />
+                                    </Right>
+                                </ListItem>
+                            ))
+                        }
+                    </List>
+
                 </Content>
-                <FooterMenu page="customers" />
-            </Container>
+                <FixedFooter page="customers" navigation={this.props.navigation} />
+            </Container >
         );
     }
 }
-
-const styles = StyleSheet.create({
-    button: {
-        marginTop: 5,
-        width: '100%',
-        alignItems: 'center',
-        backgroundColor: '#22469e'
-    },
-    buttonText: {
-        textAlign: 'center',
-        padding: 15,
-        color: 'white'
-    },
-    icon: {
-        textAlign: 'left'
-    },
-    logo: {
-        height: 50,
-        width: 50
-    }
-});

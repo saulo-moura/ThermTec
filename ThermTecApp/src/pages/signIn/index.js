@@ -42,12 +42,6 @@ export default class SignIn extends Component {
         this.setState({ password });
     };
 
-    /*}
-    handleCreateAccountPress = () => {
-        this.props.navigation.navigate('SignUp');
-    };
-    */
-
     handleSignInPress = async () => {
         if (this.state.email.length === 0 || this.state.password.length === 0) {
             this.setState({ error: 'Preencha usuário e senha para continuar!' }, () => false);
@@ -97,11 +91,6 @@ export default class SignIn extends Component {
                 <Button onPress={this.handleSignInPress}>
                     <ButtonText>Entrar</ButtonText>
                 </Button>
-                {/*
-                <SignUpLink onPress={this.handleCreateAccountPress}>
-                    <SignUpLinkText>Criar conta grátis</SignUpLinkText>
-                </SignUpLink>
-                */}
             </Container>
         );
     }

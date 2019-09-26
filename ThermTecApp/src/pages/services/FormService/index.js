@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import { Container, Content, Text, Button, Icon, Card, CardItem, Body, Left, Right } from 'native-base';
-import { TouchableHighlight, StyleSheet } from 'react-native';
-import FixedHeader from '../../fixed-components/header/FixedHeader'
-import FixedFooter from '../../fixed-components/footer/FixedFooter'
+import FixedHeader from '../../../fixed-components/header/FixedHeader'
+import FixedFooter from '../../../fixed-components/footer/FixedFooter'
 
-import api from '../../services/api';
+import api from '../../../services/api';
 
-export default class Services extends Component {
+export default class FormService extends Component {
     static navigationOptions = {
         header: null,
     };
@@ -42,7 +41,7 @@ export default class Services extends Component {
         else subtitle = "Serviços do cliente " + customerName
 
         return (
-            <Container>
+            <Container style={{ backgroundColor: "#F5F5F5" }}>
                 <StatusBar hidden />
                 <FixedHeader page="services" subtitle={subtitle} navigation={this.props.navigation} />
                 <Content>

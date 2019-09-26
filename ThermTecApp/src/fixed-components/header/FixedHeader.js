@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Header, Left, Button, Body, Title, Subtitle } from 'native-base';
+import { View, Header, Left, Right, Icon, Button, Body, Title, Subtitle } from 'native-base';
 import { Image, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -7,13 +7,27 @@ export default class FixedHeader extends Component {
     state = {
         username: ""
     }
+
     async componentDidMount() {
         this.state.username = await AsyncStorage.getItem('@ThermTecApp:username')
     }
-    
+
+    _onPressButton() {
+        switch (this.props.page) {
+            case "customers":
+                this.props.navigation.navigate("FormCustomer")
+                break;
+            case "services":
+                this.props.navigation.navigate("FormService")
+                break;
+            default:
+                break;
+        }
+    }
+
     render() {
         return (
-            <View>  
+            <View>
                 <Header>
                     <Left>
                         <Button transparent>
@@ -21,9 +35,14 @@ export default class FixedHeader extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Olá {this.state.username}!</Title>
-                        <Subtitle>{this.props.subtitle}</Subtitle>
+                        <Title style={styles.title}>Olá {this.state.username}!</Title>
+                        <Subtitle style={styles.subtitle}>{this.props.subtitle}</Subtitle>
                     </Body>
+                    <Right>
+                        <Button transparent onPress={() => this._onPressButton()}>
+                            <Icon type="AntDesign" name='pluscircleo' />
+                        </Button>
+                    </Right>
                 </Header>
             </View>
         );
@@ -34,5 +53,11 @@ const styles = StyleSheet.create({
     logo: {
         height: 50,
         width: 50
+    },
+    itle: {
+        fontSize: 14
+    },
+    subtitle: {
+        fontSize: 10
     }
 });

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import { Container, Content, Text, Button, Icon, List, ListItem, Right, Left } from 'native-base';
-import { TouchableHighlight, StyleSheet, ActivityIndicator } from 'react-native';
 import FixedHeader from '../../fixed-components/header/FixedHeader'
 import FixedFooter from '../../fixed-components/footer/FixedFooter'
 import AsyncStorage from '@react-native-community/async-storage';
@@ -38,9 +37,9 @@ export default class Customers extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{ backgroundColor: "#F5F5F5" }}>
                 <StatusBar hidden />
-                <FixedHeader subtitle="Meus Clientes" />
+                <FixedHeader page="customers" subtitle="Meus Clientes" navigation={this.props.navigation} />
                 <Content>
                     <List>
                         {

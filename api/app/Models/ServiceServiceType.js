@@ -3,7 +3,11 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
-class ServiceTypeService extends Model {
+class ServiceServiceType extends Model {
+    static get table() {
+        return "service_service_type"
+    }
+
     static get createdAtColumn () {
         return null
     }
@@ -13,4 +17,4 @@ class ServiceTypeService extends Model {
     }
 }
 
-module.exports = ServiceTypeService
+module.exports = ServiceServiceType

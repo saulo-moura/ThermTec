@@ -7,7 +7,6 @@ class Service extends Model {
     types() {
         return this
             .belongsToMany('App/Models/ServiceType')
-            .pivotModel('App/Models/ServiceTypeService')
 
     }
     

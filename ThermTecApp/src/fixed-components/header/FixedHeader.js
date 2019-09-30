@@ -18,7 +18,7 @@ export default class FixedHeader extends Component {
                 this.props.navigation.navigate("FormCustomer")
                 break;
             case "services":
-                this.props.navigation.navigate("FormService")
+                this.props.navigation.navigate("FormService", { customerId: this.props.customerId })
                 break;
             default:
                 break;

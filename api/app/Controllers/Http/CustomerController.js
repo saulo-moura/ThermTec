@@ -29,7 +29,7 @@ class CustomerController {
  */
     async create({ request, auth }) {
         const user = await auth.getUser()
-        var data = request.only(["name", "address", "phone"])
+        var data = request.only(["code", "name", "address", "phone"])
         const customer = await Customer.create(data)
         return customer
     }
@@ -44,7 +44,7 @@ class CustomerController {
      */
     async store({ request, auth }) {
         const user = await auth.getUser()
-        var data = request.only(["name", "address", "phone"])
+        var data = request.only(["code", "name", "address", "phone"])
         data.user_id = user.id
         const customer = await Customer.create(data)
         return customer

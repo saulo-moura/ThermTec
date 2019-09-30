@@ -13,7 +13,6 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
-const Hash = use('Hash')
 
 Factory.blueprint('App/Models/User', () => {
     return {
@@ -25,6 +24,7 @@ Factory.blueprint('App/Models/User', () => {
 
 Factory.blueprint('App/Models/Customer', (faker) => {
     return {
+        code: 'CLI' + faker.integer({ min: 1000, max: 9999 }),
         name: faker.name(),
         address: faker.address(),
         user_id: 1
@@ -39,16 +39,15 @@ Factory.blueprint('App/Models/ServiceType', (faker, index, data) => {
 
 Factory.blueprint('App/Models/Service', (faker) => {
     return {
-        code: faker.word({ length: 5 }),
         customer_id: 1,
         description: faker.sentence(),
         cost: faker.floating({ min: 0, max: 1000 })
     }
 })
 
-Factory.blueprint('App/Models/ServiceTypeService', (faker) => {
+Factory.blueprint('App/Models/ServiceServiceType', (faker) => {
     return {
-        service_id: faker.integer({ min: 1, max: 15 }),
+        service_id: faker.integer({ min: 1, max: 10 }),
         service_type_id: faker.integer({ min: 1, max: 5 })
     }
 })

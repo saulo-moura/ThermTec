@@ -1,12 +1,12 @@
 {
-  "engines": {
-    "node": "10.16.3",
-    "npm": "5.7.1"
-  },
   "name": "adonis-api-app",
   "version": "1.0.0",
   "adonis-version": "4.1.0",
   "description": "Adonisjs boilerplate for API server with pre-configured JWT",
+  "engines": {
+    "node": "10.16.3",
+    "npm": "5.7.1"
+  },
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

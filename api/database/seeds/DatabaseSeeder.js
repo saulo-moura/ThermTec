@@ -36,10 +36,10 @@ class DatabaseSeeder {
 
     const service = await Factory
       .model('App/Models/Service')
-      .createMany(15)
+      .createMany(10)
 
     const serviceTypeService = await Factory
-      .model('App/Models/ServiceTypeService')
+      .model('App/Models/ServiceServiceType')
       .createMany(10)
   }
 }

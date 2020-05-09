@@ -12,7 +12,7 @@ export default class FixedFooter extends Component {
                             <Icon active={this.props.page === 'customers'} name="person" />
                             <Text>Clientes</Text>
                         </Button>
-                        <Button active={this.props.page === 'services'} vertical onPress={() => navigation.navigate('Services', { customerId: 0, customerName: null }) }>
+                        <Button active={this.props.page === 'services'} vertical onPress={() => navigation.navigate('Services', { customerId: null }) }>
                             <Icon active={this.props.page === 'services'} name="paper" />
                             <Text>Serviços</Text>
                         </Button>

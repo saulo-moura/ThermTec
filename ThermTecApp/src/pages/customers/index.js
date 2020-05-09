@@ -32,8 +32,8 @@ export default class Customers extends Component {
         }
     }
 
-    _onPressButton(id, name) {
-        this.props.navigation.navigate('Services', { customerId: id, customerName: name })
+    _onPressButton(id) {
+        this.props.navigation.navigate('Services', { customerId: id })
     }
 
     render() {
@@ -45,7 +45,7 @@ export default class Customers extends Component {
                     <List>
                         {
                             this.state.user.customers.map((customer) => (
-                                <ListItem onPress={() => this._onPressButton(customer.id, customer.name)} key={customer.id}>
+                                <ListItem onPress={() => this._onPressButton(customer.id)} key={customer.id}>
                                     <Left>
                                         <Text>{customer.code} - {customer.name}</Text>
                                     </Left>

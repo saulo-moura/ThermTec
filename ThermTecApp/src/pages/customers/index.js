@@ -15,6 +15,7 @@ export default class Customers extends Component {
     state = {
         user: {
             id: '',
+            code: '',
             name: '',
             email: '',
             customers: []
@@ -46,7 +47,7 @@ export default class Customers extends Component {
                             this.state.user.customers.map((customer) => (
                                 <ListItem onPress={() => this._onPressButton(customer.id, customer.name)} key={customer.id}>
                                     <Left>
-                                        <Text>{customer.name}</Text>
+                                        <Text>{customer.code} - {customer.name}</Text>
                                     </Left>
                                     <Right>
                                         <Icon name="arrow-forward" />

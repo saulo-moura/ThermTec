@@ -34,7 +34,7 @@ export default class FixedHeader extends Component {
                             <Image style={styles.logo} source={require('../../images/thermtec-blue-transparent.png')} />
                         </Button>
                     </Left>
-                    <Body>
+                    <Body style={styles.headerBody}>
                         <Title style={styles.title}>Olá {this.state.username}!</Title>
                         <Subtitle style={styles.subtitle}>{this.props.subtitle}</Subtitle>
                     </Body>
@@ -54,10 +54,14 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50
     },
-    itle: {
+    title: {
         fontSize: 14
     },
     subtitle: {
         fontSize: 10
+    },
+    headerBody: {
+        width: 300,
+        marginLeft: 20
     }
 });

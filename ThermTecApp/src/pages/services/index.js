@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
-import { Container, Content, Text, Button, Icon, Card, CardItem, Body, Left, Right } from 'native-base';
-import { TouchableHighlight, StyleSheet } from 'react-native';
-import FixedHeader from '../../fixed-components/header/FixedHeader'
-import FixedFooter from '../../fixed-components/footer/FixedFooter'
+import { Container, Content, Text, Icon, Card, CardItem, Left, Right } from 'native-base';
+import FixedHeader from '../../fixed-components/header/FixedHeader';
+import FixedFooter from '../../fixed-components/footer/FixedFooter';
+import Moment from 'moment';
 
 import api from '../../services/api';
 
@@ -18,8 +18,7 @@ export default class Services extends Component {
 
     async componentDidMount() {
         try {
-            const { navigation } = this.props;
-            const customerId = navigation.getParam('customerId', 'NO-ID');
+            const customerId = this.props.navigation.getParam('customerId', 'NO-ID');
             var urlApi = ""
             if (customerId == 0) urlApi = "services"
             else urlApi = '/services/customer/' + customerId
@@ -35,12 +34,8 @@ export default class Services extends Component {
     }
 
     render() {
-        const { navigation } = this.props
-        const customerName = navigation.getParam('customerName', '');
-        var subtitle = ""
-        if (customerName == '' || customerName == null) subtitle = "Meus Serviços"
-        else subtitle = "Serviços do cliente " + customerName
-
+        var subtitle = "Meus Serviços"
+        
         return (
             <Container>
                 <StatusBar hidden />
@@ -51,7 +46,7 @@ export default class Services extends Component {
                             <Card key={service.id}>
                                 <CardItem header button onPress={() => this._onPressButton(service.id)}>
                                     <Left>
-                                        <Text>Código: {service.code}</Text>
+                                        <Text style={{fontSize: 14, width: 400}}>Data do Serviço: {Moment(service.created_at).format('DD/MM/YYYY')}</Text>
                                     </Left>
                                     <Right>
                                         <Icon name="arrow-forward" />

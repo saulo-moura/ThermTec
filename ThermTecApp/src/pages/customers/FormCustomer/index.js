@@ -23,6 +23,7 @@ export default class FormCustomer extends Component {
 
     state = {
         customer: {
+            code: '',
             name: '',
             address: '',
             phone: ''
@@ -32,9 +33,21 @@ export default class FormCustomer extends Component {
 
     phoneNumber = ''
 
+    handleCodeChange = (code) => {
+        this.setState({
+            customer: {
+                code: code,
+                name: this.state.customer.name,
+                address: this.state.customer.address,
+                phone: this.state.customer.phone
+            }
+        });
+    };
+
     handleNameChange = (name) => {
         this.setState({
             customer: {
+                code: this.state.customer.code,
                 name: name,
                 address: this.state.customer.address,
                 phone: this.state.customer.phone
@@ -45,6 +58,7 @@ export default class FormCustomer extends Component {
     handleAddressChange = (address) => {
         this.setState({
             customer: {
+                code: this.state.customer.code,
                 name: this.state.customer.name,
                 address: address,
                 phone: this.state.customer.phone
@@ -55,6 +69,7 @@ export default class FormCustomer extends Component {
     handlePhoneChange = (phone) => {
         this.setState({
             customer: {
+                code: this.state.customer.code,
                 name: this.state.customer.name,
                 address: this.state.customer.address,
                 phone: phone
@@ -63,11 +78,12 @@ export default class FormCustomer extends Component {
     };
 
     async _onPressButton() {
-        if (this.state.customer.name.length === 0 || this.state.customer.address.length === 0 || this.state.customer.phone.length === 0) {
+        if (this.state.customer.code.length === 0 || this.state.customer.name.length === 0 || this.state.customer.address.length === 0 || this.state.customer.phone.length === 0) {
             this.setState({ error: 'Todos os campos devem ser preenchidos!' }, () => false);
         } else {
             try {
                 const response = await api.post('/customers', {
+                    code: this.state.customer.code,
                     name: this.state.customer.name,
                     address: this.state.customer.address,
                     phone: this.phoneNumber.getRawValue()
@@ -112,6 +128,16 @@ export default class FormCustomer extends Component {
                 <Content>
                     <H1 style={styles.title}>Cadastrar Cliente</H1>
                     <View style={styles.container}>
+                        <View style={{ paddingBottom: 10 }}>
+                            <TextInput
+                                placeholder="Código"
+                                style={styles.input}
+                                value={this.state.customer.code}
+                                onChangeText={this.handleCodeChange}
+                                autoCapitalize="characters"
+                                autoCorrect={false}
+                            />
+                        </View>
                         <View style={{ paddingBottom: 10 }}>
                             <TextInput
                                 placeholder="Nome"

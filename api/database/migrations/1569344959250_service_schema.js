@@ -7,7 +7,6 @@ class ServiceSchema extends Schema {
   up () {
     this.create('services', (table) => {
       table.increments()
-      table.string('code').notNullable().unique()
       table.integer('customer_id').unsigned().notNullable().references('id').inTable('customers')
       table.string('description').notNullable()
       table.decimal('cost', 10, 2)
